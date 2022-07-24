@@ -14,10 +14,32 @@ class WhatsAppScreen extends StatefulWidget {
 class _WhatsAppScreenState extends State<WhatsAppScreen>
     with SingleTickerProviderStateMixin {
   TabController? tabController;
+  var fabIcon = Icons.message;
+
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 4, vsync: this);
+    tabController = TabController(length: 4, vsync: this)
+      ..addListener(() {
+        setState(() {
+          switch (tabController?.index) {
+            case 0:
+              fabIcon = Icons.camera;
+              break;
+            case 1:
+              fabIcon = Icons.message;
+              break;
+            case 2:
+              fabIcon = Icons.camera_enhance;
+              break;
+            case 3:
+              fabIcon = Icons.call;
+              break;
+            default:
+          }
+        });
+      });
+    tabController?.index = 1;
   }
 
   @override
@@ -57,12 +79,17 @@ class _WhatsAppScreenState extends State<WhatsAppScreen>
         children: [
           Icon(
             Icons.camera_alt,
-            size: 30,
+            size: 35,
           ),
           ChatsScreen(),
           StatusScreen(),
           CallsScreen(),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: whatsAppLightGreen,
+        child: Icon(fabIcon),
       ),
     );
   }
