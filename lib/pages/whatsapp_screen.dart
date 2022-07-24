@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui_whatsapp_flutter/styles/theme.dart';
+import 'package:ui_whatsapp_flutter/widgets/calls_screen.dart';
+import 'package:ui_whatsapp_flutter/widgets/chats_screen.dart';
+import 'package:ui_whatsapp_flutter/widgets/status_screen.dart';
 
 class WhatsAppScreen extends StatefulWidget {
   const WhatsAppScreen({Key? key}) : super(key: key);
@@ -48,6 +51,18 @@ class _WhatsAppScreenState extends State<WhatsAppScreen>
             ),
           ],
         ),
+      ),
+      body: TabBarView(
+        controller: tabController,
+        children: [
+          Icon(
+            Icons.camera_alt,
+            size: 30,
+          ),
+          ChatsScreen(),
+          StatusScreen(),
+          CallsScreen(),
+        ],
       ),
     );
   }
